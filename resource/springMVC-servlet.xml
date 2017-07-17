@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+<!-- 		映射解析器 -->
+		<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+				<property name="mappings">
+					<props>
+						<prop key="/*.action">springControllers</prop>
+					</props>
+				</property>
+		</bean>
+<!-- 		代理組件 -->
+		 <bean id="springControllers" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+		 	
+		 	<property name="delegate">
+		 		<ref bean="springMVCController"/>
+		 	</property>
+		 	<property name="methodNameResolver">
+		 		<ref bean="methodNameResolver"/>
+		 	</property>
+		 </bean>
+		 
+		 <bean id="springMVCController" class="com.chinasoft.controller.MulitController"></bean>
+		 <bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.InternalPathMethodNameResolver"></bean>
+<!-- 		 視圖解析器 -->
+		<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="prefix" value="/WEB-INF/jsp/"></property>
+			<property name="suffix" value=".jsp"></property>
+		</bean>
+		
+</beans>

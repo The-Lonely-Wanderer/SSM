@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       					http://www.springframework.org/schema/beans/spring-beans.xsd
+       					http://www.springframework.org/schema/context
+       					http://www.springframework.org/schema/context/spring-context.xsd
+       					http://www.springframework.org/schema/aop
+        				http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<bean id="Class" class="com.chinasofti.ssm.model.Class"></bean>
+	<bean id="Student" class="com.chinasofti.ssm.model.Student"></bean>
+	<bean id="Score" class="com.chinasofti.ssm.model.Score"></bean>
+	<bean id="ClassService" class="com.chinasoft.service.ClassService"></bean>
+	<bean id="StudentService" class="com.chinasoft.service.StudentService"></bean>
+	<bean id="ScoreService" class="com.chinasoft.service.ScoreService"></bean>
+	<bean id="propertyConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+
+	</bean>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driver}"></property>
+		<property name="jdbcUrl" value="${jdbc.url}"></property>
+		<property name="user" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="initialPoolSize" value="${c3p0.pool.size.init}" />
+		<!-- 连接池最大数量 -->
+		<property name="maxPoolSize" value="${c3p0.pool.size.max}" />
+		<!-- 连接池最小数量 -->
+		<property name="minPoolSize" value="${c3p0.pool.size.min}" />
+		<!-- 连接池连接对象用完时一次性新创建的数量 -->
+		<property name="acquireIncrement" value="${c3p0.pool.size.increment}" />
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxIdleTime" value="${c3p0.pool.maxIdleTime}" />
+	</bean>
+
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 配置数据源信息 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 配置引用的类的配置信息 -->
+		<property name="configLocation" value="classpath:mybatisConfiguration.xml"></property>
+		<!-- 自动扫描mapping.xml文件 -->
+		<property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+	</bean>
+	<!-- 通知 -->
+</beans>
