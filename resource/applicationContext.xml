@@ -8,12 +8,12 @@
        					http://www.springframework.org/schema/context/spring-context.xsd
        					http://www.springframework.org/schema/aop
         				http://www.springframework.org/schema/aop/spring-aop.xsd">
-	<bean id="Class" class="com.chinasofti.ssm.model.Class"></bean>
-	<bean id="Student" class="com.chinasofti.ssm.model.Student"></bean>
-	<bean id="Score" class="com.chinasofti.ssm.model.Score"></bean>
-	<bean id="ClassService" class="com.chinasoft.service.ClassService"></bean>
-	<bean id="StudentService" class="com.chinasoft.service.StudentService"></bean>
-	<bean id="ScoreService" class="com.chinasoft.service.ScoreService"></bean>
+<!-- 	<bean id="Class" class="com.chinasofti.ssm.model.Class"></bean> -->
+<!-- 	<bean id="Student" class="com.chinasofti.ssm.model.Student"></bean> -->
+<!-- 	<bean id="Score" class="com.chinasofti.ssm.model.Score"></bean> -->
+<!-- 	<bean id="ClassService" class="com.chinasoft.service.ClassService"></bean> -->
+<!-- 	<bean id="StudentService" class="com.chinasoft.service.StudentService"></bean> -->
+<!-- 	<bean id="ScoreService" class="com.chinasoft.service.ScoreService"></bean> -->
 	<bean id="propertyConfig"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
